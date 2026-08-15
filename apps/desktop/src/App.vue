@@ -237,7 +237,7 @@ const rightSidebarPanelStorageKeys: Partial<Record<RightSidebarPanelId, string>>
   sqlFile: "dbx-sql-file-panel-open",
 };
 let lastOpenedRightSidebarPanel = RIGHT_SIDEBAR_PANEL_IDS.find((panelId) => rightSidebarPanelRefs[panelId].value);
-const sidebarOpen = ref(safeLocalStorageGet("dbx-sidebar-open") !== "false");
+const sidebarOpen = ref(safeLocalStorageGet("dbx-sidebar-open") !== "false" && window.innerWidth >= 768);
 const aiPanelReady = ref(false);
 const { sidebarWidth, aiPanelWidth, historyWidth, sqlLibraryWidth, sqlFilePanelWidth, startSidebarResize, startAiPanelResize, startHistoryResize, startSqlLibraryResize, startSqlFilePanelResize } = usePanelResize();
 const aiAssistantRef = ref<AiAssistantHandle | null>(null);
@@ -2567,7 +2567,7 @@ onUnmounted(() => {
   <LoginPage v-if="setupRequired || (needsAuth && !authenticated)" :setup-mode="setupRequired" @authenticated="onLoginSuccess" />
   <div v-show="!setupRequired && (!needsAuth || authenticated)" class="fixed inset-0 h-screen w-screen overflow-hidden">
     <TooltipProvider :delay-duration="300">
-      <div class="h-screen w-screen max-w-full min-w-[760px] min-h-[600px] flex flex-col bg-background text-foreground overflow-hidden" :class="{ 'dbx-desktop-window-frame': drawDesktopWindowFrame }" :style="appUiFontFamilyStyle">
+      <div class="h-screen w-screen max-w-full min-w-0 min-h-0 md:min-w-[760px] md:min-h-[600px] flex flex-col bg-background text-foreground overflow-hidden" :class="{ 'dbx-desktop-window-frame': drawDesktopWindowFrame }" :style="appUiFontFamilyStyle">
         <AppToolbar
           :is-dark="isDark"
           :theme-mode="themeMode"

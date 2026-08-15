@@ -505,7 +505,7 @@ function isRightItemVisible(key: string) {
 }
 
 const toolbarTextButtonClass = "h-8 px-2 text-xs gap-1 leading-none";
-const toolbarTextLabelClass = "inline-flex translate-y-px items-center leading-none";
+const toolbarTextLabelClass = "inline-flex translate-y-px items-center leading-none hidden md:inline-flex";
 const toolbarDropdownTriggerClass = `inline-flex h-8 items-center gap-1 rounded-[6px] px-2 text-xs font-medium leading-none hover:bg-muted hover:text-foreground dark:hover:bg-muted/50 transition-colors [&>span:first-child]:translate-y-px`;
 const toolbarStyle = computed(() => {
   if (!shouldReserveTrafficLightInset.value) return undefined;
